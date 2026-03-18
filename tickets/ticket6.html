@@ -1,1 +1,183 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Билет №6 | Бесконечно малые и бесконечно большие последовательности</title>
+    <!-- MathJax для формул -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <!-- Общие стили -->
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="site-header">
+            <h1>📘 Билет №6</h1>
+            <p class="subtitle">Бесконечно большие и бесконечно малые последовательности, их примеры, свойства. Предел суммы, разности, произведения и частного двух числовых последовательностей.</p>
+        </header>
 
+        <a href="../index.html" class="back-home">← Назад к списку билетов</a>
+
+        <div class="ticket-content">
+            <p>В математическом анализе поведение последовательностей при стремлении их номера к бесконечности разделяют на несколько ключевых типов. Ниже приведен подробный разбор бесконечно малых и бесконечно больших последовательностей, их свойств и арифметики пределов с соответствующими доказательствами.</p>
+
+            <!-- 1. Бесконечно малые последовательности -->
+            <h2>1. Бесконечно малые последовательности (Б.М.П.)</h2>
+            
+            <div class="definition">
+                <p><strong>Определение:</strong> Последовательность \(\{\alpha_n\}\) называется <strong>бесконечно малой</strong>, если её предел равен нулю.</p>
+                <p>Математически:</p>
+                <div class="formula-box">
+                    \[
+                    \lim_{n \to \infty} \alpha_n = 0 \Longleftrightarrow \forall \varepsilon > 0 \; \exists N_{\varepsilon} \in \mathbb{N}: \forall n > N_{\varepsilon} \Longrightarrow |\alpha_n| < \varepsilon
+                    \]
+                </div>
+                <p><em>Графическое понимание:</em> Члены последовательности, начиная с некоторого номера, попадают в сколь угодно узкую трубку (коридор) шириной \(2\varepsilon\) вокруг оси \(Ox\). Вне этого коридора может находиться лишь конечное число членов.</p>
+                
+                <p><strong>Примеры:</strong></p>
+                <ul>
+                    <li>\(\frac{1}{n}, \frac{(-1)^n}{n}\) — стандартные примеры Б.М.П.</li>
+                    <li>\(q^n\) при \(|q| < 1\) (например, \((1/2)^n\))</li>
+                    <li>Любая последовательность \(x_n\), сходящаяся к числу \(a\), может быть представлена как \(x_n = a + \alpha_n\), где \(\alpha_n\) — Б.М.П.</li>
+                </ul>
+            </div>
+
+            <h3>Свойства Б.М.П.</h3>
+            
+            <div class="property">
+                <ol>
+                    <li>Сумма/разность двух Б.М.П. есть Б.М.П.</li>
+                    <li>Произведение Б.М.П. на ограниченную последовательность есть Б.М.П.</li>
+                    <li>Произведение двух Б.М.П. есть Б.М.П.</li>
+                </ol>
+            </div>
+            
+            <div class="proof">
+                <p><strong>Математическое доказательство свойства №2 (Б.М.П. ⋅ Ограниченная):</strong></p>
+                <p>Пусть \(\lim \alpha_n = 0\), а \(\{y_n\}\) — ограничена (\(|y_n| \le C\) для всех \(n\)). Докажем, что \(\lim(\alpha_n y_n) = 0\).</p>
+                <ol>
+                    <li>Зафиксируем \(\varepsilon > 0\). Нам нужно найти такое \(N\), чтобы \(|\alpha_n y_n| < \varepsilon\).</li>
+                    <li>Т.к. \(\alpha_n\) — Б.М.П., то для любого \(\varepsilon' > 0\) существует \(N_1\), такое что для всех \(n > N_1\) выполняется \(|\alpha_n| < \varepsilon'\).</li>
+                    <li>Рассмотрим произведение: \(|\alpha_n y_n| = |\alpha_n| \cdot |y_n| < \varepsilon' \cdot C\).</li>
+                    <li>Выберем \(\varepsilon' = \frac{\varepsilon}{C}\) (если \(C > 0\)). Тогда для всех \(n > N_1\): \(|\alpha_n y_n| < \frac{\varepsilon}{C} \cdot C = \varepsilon\).</li>
+                    <li>Следовательно, произведение является Б.М.П. по определению.</li>
+                </ol>
+            </div>
+
+            <!-- 2. Бесконечно большие последовательности -->
+            <h2>2. Бесконечно большие последовательности (Б.Б.П.)</h2>
+            
+            <div class="definition">
+                <p><strong>Определение:</strong> Последовательность \(\{x_n\}\) называется <strong>бесконечно большой</strong>, если её члены по модулю неограниченно возрастают.</p>
+                <p>Математически:</p>
+                <div class="formula-box">
+                    \[
+                    \lim_{n \to \infty} x_n = \infty \Longleftrightarrow \forall E > 0 \; \exists N: \forall n \ge N \Longrightarrow |x_n| > E
+                    \]
+                </div>
+                
+                <p><strong>Разновидности:</strong></p>
+                <ul>
+                    <li><strong>Стремление к \(+\infty\):</strong> \(\forall E > 0 \; \exists N: \forall n \ge N \Longrightarrow x_n > E\)</li>
+                    <li><strong>Стремление к \(-\infty\):</strong> \(\forall E > 0 \; \exists N: \forall n \ge N \Longrightarrow x_n < -E\)</li>
+                </ul>
+                
+                <p><em>Графическое понимание:</em> Какую бы высокую (или низкую) горизонтальную границу \(E\) мы ни провели, график последовательности «пробьет» её и навсегда останется выше (или ниже) этой границы.</p>
+                
+                <p><strong>Примеры:</strong></p>
+                <ul>
+                    <li>\(x_n = n\) (стремится к \(+\infty\))</li>
+                    <li>\(x_n = (-1)^n \cdot n\) (стремится к \(\infty\) без знака, т.к. модули растут)</li>
+                </ul>
+            </div>
+
+            <div class="property">
+                <p><strong>Важное различие:</strong> Любая Б.Б.П. является неограниченной, но не любая неограниченная является бесконечно большой.</p>
+                <p><em>Пример:</em> \(x_n = n(1 - (-1)^n)\) принимает значения \(0, 2, 0, 4, 0, 6, \dots\). Она неограниченна (есть сколь угодно большие члены), но не является Б.Б.П., так как бесконечно много её членов равны \(0\) и не выходят за границу \(E\).</p>
+                
+                <p><strong>Связь Б.М.П. и Б.Б.П.:</strong> Если \(\{\alpha_n\}\) — Б.М.П. и \(\alpha_n \neq 0\), то \(\{1/\alpha_n\}\) — Б.Б.П. И наоборот.</p>
+            </div>
+
+            <!-- 3. Арифметические свойства пределов -->
+            <h2>3. Арифметические свойства пределов</h2>
+            
+            <div class="theorem">
+                <p>Если последовательности \(\{x_n\}\) и \(\{y_n\}\) имеют конечные пределы (\(\lim x_n = a, \lim y_n = b\)), то справедливы следующие теоремы:</p>
+                <ul>
+                    <li><strong>Предел суммы/разности:</strong> \(\lim (x_n \pm y_n) = a \pm b\)</li>
+                    <li><strong>Предел произведения:</strong> \(\lim (x_n \cdot y_n) = a \cdot b\)</li>
+                    <li><strong>Предел частного:</strong> \(\lim \frac{x_n}{y_n} = \frac{a}{b}\) (при \(b \neq 0\))</li>
+                </ul>
+            </div>
+
+            <h3>Доказательство предела суммы</h3>
+            <div class="proof">
+                <ol>
+                    <li>Представим последовательности через их пределы и Б.М.П.: \(x_n = a + \alpha_n\) и \(y_n = b + \beta_n\), где \(\alpha_n, \beta_n\) — Б.М.П.</li>
+                    <li>Рассмотрим их сумму: \(x_n + y_n = (a + \alpha_n) + (b + \beta_n) = (a + b) + (\alpha_n + \beta_n)\).</li>
+                    <li>По свойству Б.М.П., сумма \((\alpha_n + \beta_n)\) также является Б.М.П.</li>
+                    <li>Следовательно, предел суммы равен \(a + b\).</li>
+                </ol>
+            </div>
+
+            <h3>Доказательство предела произведения</h3>
+            <div class="proof">
+                <ol>
+                    <li>\(x_n y_n = (a + \alpha_n)(b + \beta_n) = ab + a\beta_n + b\alpha_n + \alpha_n \beta_n\).</li>
+                    <li>Разберем слагаемые:
+                        <ul>
+                            <li>\(ab\) — константа.</li>
+                            <li>\(a\beta_n\) — Б.М.П. (константа ⋅ Б.М.П.)</li>
+                            <li>\(b\alpha_n\) — Б.М.П.</li>
+                            <li>\(\alpha_n \beta_n\) — Б.М.П. (произведение двух Б.М.П.)</li>
+                        </ul>
+                    </li>
+                    <li>Сумма трех Б.М.П. (\(a\beta_n + b\alpha_n + \alpha_n \beta_n\)) является Б.М.П.</li>
+                    <li>Значит, \(\lim (x_n y_n) = ab\).</li>
+                </ol>
+            </div>
+
+            <h3>Доказательство предела частного</h3>
+            <div class="proof">
+                <p>Для этого достаточно доказать, что \(\lim \frac{1}{y_n} = \frac{1}{b}\) при \(b \neq 0\).</p>
+                <ol>
+                    <li>Рассмотрим разность: \(\frac{1}{y_n} - \frac{1}{b} = \frac{b - y_n}{b y_n} = \frac{-\beta_n}{b y_n} = \beta_n \cdot \left(-\frac{1}{b y_n}\right)\).</li>
+                    <li>Поскольку \(\lim y_n = b \neq 0\), то последовательность \(y_n\) «отделена от нуля» (по лемме о знаке), а значит, последовательность \(\left\{-\frac{1}{b y_n}\right\}\) ограничена.</li>
+                    <li>Произведение Б.М.П. \(\beta_n\) на ограниченную последовательность есть Б.М.П.</li>
+                    <li>Следовательно, \(\lim \frac{1}{y_n} = \frac{1}{b}\), и по теореме о произведении: \(\lim \frac{x_n}{y_n} = \lim \left(x_n \cdot \frac{1}{y_n}\right) = a \cdot \frac{1}{b} = \frac{a}{b}\).</li>
+                </ol>
+            </div>
+
+            <!-- Итоговые формулы -->
+            <div class="formula-box">
+                \[
+                \lim_{n \to \infty} \alpha_n = 0 \quad \text{(Б.М.П.)}
+                \]
+                \[
+                \lim_{n \to \infty} x_n = \infty \quad \text{(Б.Б.П.)}
+                \]
+                \[
+                \lim (x_n \pm y_n) = \lim x_n \pm \lim y_n
+                \]
+                \[
+                \lim (x_n \cdot y_n) = \lim x_n \cdot \lim y_n
+                \]
+                \[
+                \lim \frac{x_n}{y_n} = \frac{\lim x_n}{\lim y_n} \quad (\lim y_n \neq 0)
+                \]
+            </div>
+        </div>
+
+        <!-- Навигация между билетами -->
+        <div class="ticket-nav">
+            <a href="ticket5.html" class="nav-link">← Предыдущий билет (№5)</a>
+            <a href="../index.html" class="nav-link">К списку</a>
+            <a href="ticket7.html" class="nav-link">Следующий билет (№7) →</a>
+        </div>
+
+        <footer class="site-footer">
+            <p>Билет №6 • Полная теория для подготовки к коллоквиуму</p>
+        </footer>
+    </div>
+</body>
+</html>
